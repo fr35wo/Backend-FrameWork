@@ -10,5 +10,5 @@ spring mvc 기초
 mybatis 시작 / 목록, 등록, 수정, 삭제 구현
 
 4일차
-select 태그 구현 방법
+select 태그 구현 방법 / 
 spring form 확장 태그
