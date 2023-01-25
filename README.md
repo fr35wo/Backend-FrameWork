@@ -15,3 +15,7 @@ spring form 확장 태그 form1
 
 5일차
 Spring boot + mybatis 기술을 사용하여 DB 조회, 수정, 삽입, 삭제 기능을 구현한다.
+
+6일차
+mybatis 데이터베이스 캐시 기능을 학습한다. / 
+mybatis SQL 로깅
