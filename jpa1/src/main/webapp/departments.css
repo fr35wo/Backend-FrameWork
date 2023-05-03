@@ -1,0 +1,22 @@
+/* 공통 */
+button { padding: 0.4em 1.5em; }
+table { border-collapse: collapse; margin-bottom: 20px; width: 100%; }
+tr:nth-child(1) { background-color: #ddd; }
+tr.clickable:hover { background-color: #ffb; cursor: pointer; }
+td { padding: 8px;  border: 1px solid #aaa; }
+
+/* main */
+div#main { padding: 30px; margin: 30px auto; max-width: 800px;
+  border: 1px solid #ccc; box-shadow: 3px 3px 3px #aaa; }
+div#main h1 { border-bottom: 1px solid gray; }
+div#main button { float: right; margin-bottom: 5px; }
+
+/* dialog */
+div#backdrop { position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+  background-color: #aaa; opacity: 0.5; }
+div#dialog { position: absolute; top: 50px; left: 50%;
+  padding: 30px; margin-left: -250px; max-width: 500px;
+  background-color: white;
+  border: 1px solid #ccc; box-shadow: 4px 4px 4px #666; }
+div#dialog h1 { border-bottom: 1px solid gray; }
+div#dialog input { padding: 5px; width: 100%; margin-bottom: 20px; font-size: 10pt; }
