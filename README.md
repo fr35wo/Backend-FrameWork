@@ -22,3 +22,6 @@ mybatis SQL 로깅
 
 7일차 
 pagination 구현
+
+student9_db
+JPA Entity 클래스로 테이블 자동 생성하기
