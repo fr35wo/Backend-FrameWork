@@ -1,0 +1,92 @@
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="departments.css">
+</head>
+<body>
+  <div id="app">
+    <div id="main">
+      <h1> 학과목록</h1>
+      <button type="button" v-on:click="create"> 추가</button>
+      <table>
+        <tr>
+          <td>id</td>
+          <td>학과명</td>
+          <td>단축명</td>
+          <td>전화</td>
+        </tr>
+        <tr v-for="department in departments" v-on:click="edit(department)" 
+                                              v-bind:key="department.id" class="clickable">
+          <td>{{ department.id }}</td>
+          <td>{{ department.name }}</td>
+          <td>{{ department.shortName }}</td>
+          <td>{{ department.phone }}</td>
+        </tr>
+      </table>
+    </div>
+    
+    <div id="backdrop" v-if="showDialog"></div>
+    <div id="dialog" v-if="showDialog">
+      <h1>학과정보 {{ showDialog }}</h1>
+      <label>학과명</label>
+      <input type="text" v-model.trim="department.name" placeholder="학과명"/>
+      <label>단축명</label>
+      <input type="text" v-model.trim="department.shortName" placeholder="단축명"/>
+      <label>전화번호</label>
+      <input type="text" v-model.trim="department.phone" placeholder="전화번호"/>
+      <div>
+        <button type="button" v-on:click="save"> 저장</button>
+        <button type="button" v-on:click="remove"> 삭제</button>
+        <button type="button" v-on:click="showDialog = false"> 취소</button>
+      </div>
+    </div>    
+
+  </div>
+
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        departments: [],
+        department: {},
+        showDialog: false
+      },
+      methods: {
+        create: function() {
+          this.showDialog = "등록";          ;
+          this.department = {};
+        },
+        reload: function() {
+          axios.get('departments')
+               .then(response => this.departments = response.data );
+        },
+        edit: function(department) {
+          this.showDialog = "수정";
+          this.department = Object.assign({}, department);
+        },
+        save: function() {
+          if (this.showDialog == "등록")
+            axios.post('department', this.department)
+                 .then(response => this.reload());
+          else
+            axios.put('department', this.department)
+                 .then(response => this.reload());
+          this.showDialog = false;
+        },
+        remove: function() {
+          if (confirm("삭제하시겠습니까?") == false) return;
+          axios.delete('department/' + this.department.id)
+                 .then(response => this.reload());
+          this.showDialog = false;
+        }
+      }
+    })
+
+    window.onload = function() {
+      app.reload();
+    }
+   </script>
+</body>
+</html>
